@@ -1,0 +1,302 @@
+/* 404.component.css */
+.error-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #181828;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.top-header:before {
+  background-image: url('https://1.bp.blogspot.com/-gxsOcYWghHA/Xp_izTh4sFI/AAAAAAAAU8s/y637Fwg99qAuzW9na_NT_uApny8Vce95gCEwYBhgL/s1600/header-footer-gradient-bg.png');
+}
+
+.top-header:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-repeat: repeat-x;
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: 10;
+}
+
+/* Stars animation */
+.starsec {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 571px 173px #00BCD4, 1732px 143px #00BCD4, 1745px 454px #FF5722, 
+              234px 784px #00BCD4, 1793px 1123px #FF9800, 1076px 504px #03A9F4, 
+              633px 601px #FF5722, 350px 630px #FFEB3B, 1164px 782px #00BCD4, 
+              76px 690px #3F51B5, 1825px 701px #CDDC39, 1646px 578px #FFEB3B;
+  animation: animStar 150s linear infinite;
+}
+
+.starthird {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 544px 293px #2196F3, 445px 1061px #673AB7, 928px 47px #00BCD4, 
+              168px 1410px #8BC34A, 777px 782px #9C27B0, 1235px 1941px #9C27B0, 
+              104px 1690px #8BC34A, 1167px 1338px #E91E63, 345px 1652px #009688;
+  animation: animStar 100s linear infinite;
+}
+
+.starfourth {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 1682px 1196px #F44336, 1995px 494px #8BC34A, 428px 798px #FF5722, 
+              340px 1623px #F44336, 605px 349px #9C27B0, 1339px 1344px #673AB7, 
+              1102px 1745px #3F51B5, 1592px 1676px #2196F3, 419px 1024px #FF9800;
+  animation: animStar 50s linear infinite;
+}
+
+.starfifth {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 630px 1033px #4CAF50, 1995px 1644px #00BCD4, 1092px 712px #9C27B0, 
+              1355px 606px #F44336, 622px 1881px #CDDC39, 1481px 621px #9E9E9E, 
+              19px 1348px #8BC34A, 864px 1780px #E91E63, 442px 1136px #2196F3;
+  animation: animStar 200s linear infinite;
+}
+
+@keyframes animStar {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-2000px);
+  }
+}
+
+/* Lamp styles */
+.lamp__wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.lamp {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 0 auto;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: center top;
+  animation: swing 5s infinite ease-in-out;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}
+
+.cable {
+  width: 8px;
+  height: 248px;
+  background: linear-gradient(to bottom, rgba(32, 148, 218, 0.7), rgba(193, 65, 25, 0.7));
+}
+
+.cover {
+  width: 200px;
+  height: 80px;
+  background: #0bd5e8;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  position: relative;
+  z-index: 200;
+}
+
+.in-cover {
+  width: 100%;
+  max-width: 200px;
+  height: 20px;
+  border-radius: 100%;
+  background: #08ffff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: -9px;
+  z-index: 100;
+}
+
+.in-cover .bulb {
+  width: 50px;
+  height: 50px;
+  background-color: #08fffa;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  margin: 0 auto;
+  box-shadow: 
+    0 0 25px 7px rgba(127, 255, 255, 0.8), 
+    0 0 64px 47px rgba(0, 255, 255, 0.5), 
+    0 0 30px 15px rgba(0, 255, 255, 0.2);
+}
+
+.light {
+  width: 200px;
+  height: 0;
+  border-bottom: 900px solid rgba(44, 255, 255, 0.24);
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 270px;
+  margin: 0 auto;
+  z-index: 1;
+  border-radius: 90px 90px 0 0;
+}
+
+/* Error content */
+.error {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.error__content {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.message__title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 5rem;
+  padding-bottom: 40px;
+  margin: 0 auto;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.message__text {
+  line-height: 1.6;
+  font-size: 1.2rem;
+  padding: 0 20px;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.error__nav {
+  margin-top: 40px;
+}
+
+.e-nav__link {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.e-nav__link:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.e-nav__link:hover:before {
+  left: 100%;
+}
+
+.e-nav__link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive styles */
+@media (max-width: 1400px) {
+  .lamp {
+    transform: scale(0.7);
+  }
+  
+  .message__title {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .message__title {
+    font-size: 3rem;
+    padding-bottom: 20px;
+  }
+  
+  .message__text {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  .lamp {
+    transform: scale(0.5);
+  }
+  
+  .message__title {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+  }
+  
+  .e-nav__link {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .message__title {
+    font-size: 2rem;
+  }
+  
+  .message__text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
