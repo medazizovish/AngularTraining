@@ -432,3 +432,29 @@
 .like-count {
   font-size: 4 rem;  /* Very small font */
 }
+.ticket-btn {
+  /* Base styling */
+  position: relative;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  
+  /* Default/Active state */
+  background: linear-gradient(135deg, #ff6b35, #ff3366, #ff0066);
+  color: white;
+  box-shadow: 
+    0 8px 25px rgba(255, 51, 102, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    0 0 20px rgba(255, 255, 255, 0.2) inset;
+  
+  /* Glow effect */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}

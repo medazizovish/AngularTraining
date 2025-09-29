@@ -4,13 +4,40 @@
     <p class="lead">Discover amazing events happening near you</p>
   </div>
 
+  <!-- Search Box -->
+  <div class="search-container">
+    <div class="input-group">
+      <span class="input-group-text">
+        <i class="fas fa-search"></i>
+      </span>
+      <input 
+        type="text" 
+        class="form-control search-box" 
+        placeholder="Search events by title..."
+        [(ngModel)]="searchTerm"
+        (input)="filterEvents()">
+    </div>
+  </div>
+  <br>
+
+  <!-- Search Results Info -->
+  <div *ngIf="searchTerm" class="search-info mb-3">
+    <p *ngIf="filteredEvents.length > 0" class="text-success">
+      Found {{filteredEvents.length}} event(s) matching "{{searchTerm}}"
+    </p>
+    <p *ngIf="filteredEvents.length === 0" class="text-muted">
+      No events found matching "{{searchTerm}}"
+    </p>
+  </div>
+
+  <!-- Events List -->
   <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let e of listEvent">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let e of filteredEvents"> <!-- Changed from listEvent to filteredEvents -->
       <div class="event-card">
         <div class="card-image" [style.backgroundImage]="'url(' + e.imagerUrl + ')'">
           <div class="price-tag">${{e.price}}</div>
           <div class="date-badge">
-            <span class="month"> {{e.date | date:'MMM'}}</span>
+            <span class="month">{{e.date | date:'MMM'}}</span>
             <span class="day">{{e.date | date:'dd'}}</span>
           </div>
         </div>
@@ -22,25 +49,31 @@
           <div class="event-details">
             <div class="detail-item">
               <i class="fas fa-map-marker-alt"></i>
-              <span>location:   {{e.location}}</span>
+              <span>Location: {{e.location}}</span>
             </div>
             <div class="detail-item">
               <i class="fas fa-users"></i>
-              <span>Nbplace :{{e.Nbplace}} spots left</span>
+              <span>{{e.Nbplace}} spots left</span>
             </div>
-            
           </div>
           
-         <div class="card-footer">
- <div class="card-footer">
-  <div class="like-section">
-    <button class="like-btn" (click)="toggleLike(e)" [class.liked]="e.isLiked">
-      <img src="/images/heart.png" alt="Like" class="heart-icon">
-      <span class="like-count">{{e.NbLike}}</span>
-    </button>
-  </div>
-</div>
-                </div>
+          <div class="card-footer">
+            <div class="like-section">
+              <button class="like-btn" (click)="toggleLike(e)" [class.liked]="e.isLiked">
+                <img src="/images/heart.png" alt="Like" class="heart-icon">
+                <span class="like-count">{{e.NbLike}}</span>
+              </button>
+            </div>
+            
+            <!-- Take Ticket Button -->
+            <button class="ticket-btn" 
+                    (click)="takeTicket(e)" 
+                    [disabled]="e.Nbplace <= 0"
+                    [class.sold-out]="e.Nbplace <= 0">
+              {{e.Nbplace > 0 ? 'Take Ticket' : 'Sold Out'}}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
