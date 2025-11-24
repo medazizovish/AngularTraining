@@ -1,78 +1,200 @@
-
 .simple-form-container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 30px;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 700px; /* Plus large */
+  margin: 30px auto;
+  padding: 40px; /* Plus d'espace interne */
+  background: rgba(255, 255, 255, 0.95); /* Blanc légèrement transparent */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px); /* Effet de flou derrière */
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Titre */
+/* Titre plus grand et stylisé */
 .simple-form-container h2 {
   text-align: center;
-  margin-bottom: 25px;
-  color: #007bff;
-  font-weight: 600;
+  margin-bottom: 35px;
+  color: #2d1b69;
+  font-weight: 700;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Style du formulaire */
 .simple-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px; /* Plus d'espace entre les éléments */
 }
 
 .simple-form label {
   font-weight: 600;
-  color: #333;
+  color: #2d1b69;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  display: block;
 }
 
 .simple-form input,
 .simple-form textarea {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  padding: 15px 18px; /* Plus grand */
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .simple-form input:focus,
 .simple-form textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
   outline: none;
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
 }
 
 .simple-form textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 120px; /* Plus grand */
+  font-family: inherit;
 }
 
-/* Bouton */
+.simple-form input::placeholder,
+.simple-form textarea::placeholder {
+  color: #a8b2d1;
+  font-size: 1rem;
+}
+
+/* Bouton plus grand et stylisé */
 .btn {
-  background-color: #007bff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 16px;
+  padding: 18px 30px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-.btn:hover {
-  background-color: #0056b3;
+.btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  background: rgba(255, 255, 255, 0.3);
+  color: #a8b2d1;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Effet de brillance sur le bouton */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+/* Alertes plus visibles */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  border: none;
+  font-weight: 500;
+}
+
+.alert-danger {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+/* Animation d'entrée */
+.simple-form-container {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive */
+@media (max-width: 768px) {
+  .simple-form-container {
+    margin: 20px;
+    padding: 30px 25px;
+    max-width: none;
+  }
+  
+  .simple-form-container h2 {
+    font-size: 2rem;
+  }
+  
+  .simple-form input,
+  .simple-form textarea {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 16px 25px;
+    font-size: 1.1rem;
+  }
+}
+
 @media (max-width: 480px) {
   .simple-form-container {
-    padding: 20px;
+    margin: 15px;
+    padding: 25px 20px;
   }
-
+  
+  .simple-form-container h2 {
+    font-size: 1.8rem;
+  }
+  
   .btn {
-    font-size: 15px;
+    padding: 14px 20px;
+    font-size: 1rem;
   }
+}
+
+/* Pour s'assurer que le fond de page est visible */
+:host {
+  display: block;
+  background: transparent;
 }

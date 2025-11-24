@@ -1,38 +1,100 @@
-
-  <!---Enhance search input and display data--->
-  <div  *ngIf="e.title===searchValue || searchValue==null">
-    <div class="card h-100 shadow-sm" ngHover>
-      <img src="{{e.imageUrl}}"
-           class="card-img-top img-fluid"
-           style="height: 200px; object-fit: cover;">
-
-      <div class="card-body">
-        <h5 class="card-title"
-            [ngStyle]="{'color':e.nbPlaces==0?'red':'green'}">
-          {{ e.title }}
-        </h5>
-        <p class="text-muted">{{e.price}}</p>
-        <p>{{e.location}}</p>
-        <p class="fw-bold">{{e.nbPlaces}}</p>
-        <p>{{ e.description }}</p>
-        <!-- Bouton Like -->
-        <button [ngClass]="{'btn':true,'btn-sm':true,
-                          'btn-danger':e.nbrLike>=5,
-                          'btn-warning':e.nbrLike<5}"
-                (click)="likeEvent(e)">
-          👍 Like {{e.nbrLike}}
-        </button>
-
-        <button class="btn btn-sm btn-danger"
-                [disabled]="e.nbPlaces==0" (click)="nbrPlaceDecr(e)" ><!--Property Binding--->
-          buy ticket
-        </button>
-        <!--exercice: pipe date--->
-        <span class="ms-2">{{ e.date }}</span>
-        <a [routerLink]="['./details',e.id]">
-          more details
-        </a>
+<div *ngIf="e.title===searchValue || searchValue==null" class="event-card-container">
+  <div class="event-card">
+    <!-- Card Header with Image -->
+    <div class="card-image-container">
+      <img [src]="e.imageUrl"
+           class="card-image"
+           alt="{{ e.title }}">
+      <div class="card-overlay">
+        <span class="date-badge">
+          <i class="far fa-calendar"></i>
+          {{ e.date | date:'mediumDate' }}
+        </span>
+        <span class="location-badge">
+          <i class="fas fa-map-marker-alt"></i>
+          {{ e.location }}
+        </span>
       </div>
     </div>
-  </div>
 
+    <!-- Card Body -->
+    <div class="card-body">
+      <!-- Title with availability indicator -->
+      <h5 class="card-title" [ngClass]="{'sold-out': e.nbPlaces == 0}">
+        {{ e.title }}
+        <span class="availability-dot" [ngClass]="{'available': e.nbPlaces > 0, 'sold-out': e.nbPlaces == 0}"></span>
+      </h5>
+
+      <!-- Price -->
+      <div class="price-section">
+        <span class="price">{{ e.price | currency }}</span>
+        <span class="price-label">per ticket</span>
+      </div>
+
+      <!-- Description -->
+      <p class="card-description">{{ e.description }}</p>
+
+      <!-- Stats Section -->
+      <div class="stats-section">
+        <div class="stat-item">
+          <i class="fas fa-ticket-alt"></i>
+          <span class="stat-value">{{ e.nbPlaces }}</span>
+          <span class="stat-label">Places Left</span>
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-heart"></i>
+          <span class="stat-value">{{ e.nbrLike }}</span>
+          <span class="stat-label">Likes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Footer with Actions -->
+    <div class="card-footer">
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <!-- Like Button -->
+        <button [ngClass]="{
+          'btn-like': true,
+          'popular': e.nbrLike >= 5,
+          'normal': e.nbrLike < 5
+        }" (click)="likeEvent(e)">
+          <i class="fas fa-heart"></i>
+          <span class="like-count">{{ e.nbrLike }}</span>
+        </button>
+
+        <!-- Buy Ticket Button -->
+        <button class="btn-buy" 
+                [disabled]="e.nbPlaces == 0" 
+                (click)="nbrPlaceDecr(e)">
+          <i class="fas fa-shopping-cart"></i>
+          {{ e.nbPlaces == 0 ? 'Sold Out' : 'Buy Ticket' }}
+        </button>
+
+     
+
+        <!-- Details Link -->
+        <a [routerLink]="['./details',e.id]" class="btn-details">
+          <i class="fas fa-arrow-right"></i>
+          <span class="details-text">Details</span>
+        </a>
+      </div>
+
+      <div class="event-date-bottom">
+        <i class="far fa-clock"></i>
+        {{ e.date | date:'medium' }}
+      </div>
+
+         
+        <button class="btn-delete" (click)="deleteEvent(e)">
+          <i class="fas fa-trash"></i>
+          <span class="delete-text">Delete</span>
+        </button>
+
+          <button >
+          <a [routerLink]="['/feedback/event',e.id]">comment</a>
+
+        </button>
+    </div>
+  </div>
+</div>

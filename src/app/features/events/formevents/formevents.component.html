@@ -1,28 +1,125 @@
 <div class="simple-form-container">
   <h2>Add Event</h2>
 
-  <form class="simple-form">
+<form class="simple-form" #form="ngForm" novalidate>
+    <!-- TITLE -->
     <label for="title">Title</label>
-    <input id="title" type="text" placeholder="Titre de l'événement" />
+    <input
+      name="title"
+      [(ngModel)]="event.title"
+      type="text"
+      placeholder="Enter event title"
+      minlength="3"
+      required
+      #t="ngModel"
+    />
+    <div class="alert alert-danger" *ngIf="t.invalid && t.touched">
+      <div *ngIf="t.hasError('required')">Title is required.</div>
+      <div *ngIf="t.hasError('minlength')">Title must be at least 3 characters long.</div>
+    </div>
 
+    <!-- DESCRIPTION -->
     <label for="description">Description</label>
-    <textarea id="description" placeholder="Décrivez votre événement..."></textarea>
+    <textarea
+      id="description"
+      name="description"
+      [(ngModel)]="event.description"
+      placeholder="Write a short description..."
+      minlength="10"
+      required
+      #d="ngModel"
+    ></textarea>
+    <div class="alert alert-danger" *ngIf="d.invalid && d.touched">
+      <div *ngIf="d.hasError('required')">Description is required.</div>
+      <div *ngIf="d.hasError('minlength')">Description must be at least 10 characters long.</div>
+    </div>
 
+    <!-- DATE (custom future validation) -->
     <label for="date">Date</label>
-    <input id="date" type="date" />
+    <input
+      id="date"
+      name="date"
+      [(ngModel)]="event.date"
+      type="date"
+      required
+      #da="ngModel"
+      (change)="checkDate()"
+    />
+    <div class="alert alert-danger" *ngIf="(da.invalid && da.touched) || invalidDate">
+      <div *ngIf="da.hasError('required')">Date is required.</div>
+      <div *ngIf="invalidDate">Date must be after today.</div>
+    </div>
 
-    <label for="location">Place</label>
-    <input id="location" type="text" placeholder="Ex: Tunis" />
+    <!-- LOCATION -->
+    <label for="location">Location</label>
+    <input
+      id="location"
+      name="location"
+      [(ngModel)]="event.location"
+      placeholder="Ex: Tunis"
+      minlength="2"
+      required
+      #l="ngModel"
+    />
+    <div class="alert alert-danger" *ngIf="l.invalid && l.touched">
+      <div *ngIf="l.hasError('required')">Location is required.</div>
+      <div *ngIf="l.hasError('minlength')">Location must be at least 2 characters long.</div>
+    </div>
 
-    <label for="price">Price(DT)</label>
-    <input id="price" type="number" placeholder="Ex: 25" />
+    <!-- PRICE -->
+    <label for="price">Price (DT)</label>
+    <input
+      id="price"
+      name="price"
+      [(ngModel)]="event.price"
+      type="number"
+      min="0"
+      required
+      #p="ngModel"
+      placeholder="Ex: 25"
+    />
+    <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+      <div *ngIf="p.hasError('required')">Price is required.</div>
+      <div *ngIf="p.hasError('min')">Price cannot be negative.</div>
+    </div>
 
-    <label for="nbPlaces">nbr Place</label>
-    <input id="nbPlaces" type="number" placeholder="Ex: 100" />
+    <!-- NUMBER OF SEATS -->
+    <label for="nbPlaces">Number of Seats</label>
+    <input
+      id="nbPlaces"
+      name="nbPlaces"
+      [(ngModel)]="event.nbPlaces"
+      type="number"
+      min="6"
+      required
+      #n="ngModel"
+      placeholder="Ex: 100"
+    />
+    <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
+      <div *ngIf="n.hasError('required')">Number of seats is required.</div>
+      <div *ngIf="n.hasError('min')">Must be more than 5 seats.</div>
+    </div>
 
-    <label for="imageUrl">Image (URL)</label>
-    <input id="imageUrl" type="text" placeholder="https://exemple.com/image.jpg" />
+    <!-- IMAGE URL -->
+    <label for="imageUrl">Image URL</label>
+    <input
+      id="imageUrl"
+      name="imageUrl"
+      [(ngModel)]="event.imageUrl"
+      type="url"
+      required
+      pattern="https://.*"
+      #img="ngModel"
+      placeholder="https://example.com/image.jpg"
+    />
+    <div class="alert alert-danger" *ngIf="img.invalid && img.touched">
+      <div *ngIf="img.hasError('required')">Image URL is required.</div>
+      <div *ngIf="img.hasError('pattern')">URL must start with https://</div>
+    </div>
 
-    <button type="button" class="btn">add event</button>
-  </form>
+
+   
+
+    <button type="button" class="btn" (click)="save()" [disabled]="form.invalid">Add Event</button>
+  </form>
 </div>

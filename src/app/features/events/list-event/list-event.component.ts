@@ -19,7 +19,9 @@ export class ListEventComponent implements OnInit {
   }
   //methods => action
   ngOnInit() {
-    this.listEvents=this.eventService.getAllEvents();
+    this.eventService.getAllEvents().subscribe(
+      (data:Eventy[]) =>{this.listEvents=data}
+    );
   }
   //method to buy ticket => click on the button buy ticket
   //Haider
@@ -31,5 +33,16 @@ export class ListEventComponent implements OnInit {
     e.nbrLike ++
   }
   search(){}
+
+
+  /////////////////////
+
+ deleteEvent(event: Eventy) {
+  if (!confirm(`Delete "${event.title}"?`)) return;
+
+  this.eventService.delete(event.id).subscribe({
+    next: () => this.listEvents = this.listEvents.filter(e => e.id !== event.id)
+  });
+}
 
 }

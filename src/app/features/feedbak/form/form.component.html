@@ -1,0 +1,73 @@
+<div class="comments-container">
+  <!-- Header Section -->
+  <div class="comments-header">
+    <button class="btn-back" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i> Back to Events
+    </button>
+    <h2>Comments for Event #{{ eventId }}</h2>
+  </div>
+
+  <!-- Add Comment Section -->
+  <div class="add-comment-section">
+    <h3>Add a Comment</h3>
+    <div class="comment-form">
+      <textarea 
+        [(ngModel)]="newComment" 
+        placeholder="Share your thoughts about this event..."
+        rows="4"
+        class="comment-textarea"
+        maxlength="500">
+      </textarea>
+      <div class="comment-actions">
+        <span class="char-count">{{ newComment.length }}/500</span>
+        <button 
+          (click)="addComment()" 
+          [disabled]="!newComment.trim() || newComment.length > 500"
+          class="btn-add-comment">
+          <i class="fas fa-paper-plane"></i> Post Comment
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comments List -->
+  <div class="comments-list-section">
+    <h3>Comments ({{ comments.length }})</h3>
+    
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+      <i class="fas fa-spinner fa-spin"></i> Loading comments...
+    </div>
+
+    <!-- No Comments State -->
+    <div *ngIf="!isLoading && comments.length === 0" class="no-comments">
+      <i class="far fa-comments"></i>
+      <p>No comments yet. Be the first to share your thoughts!</p>
+    </div>
+
+    <!-- Comments List -->
+    <div *ngIf="!isLoading && comments.length > 0" class="comments-list">
+      <div *ngFor="let comment of comments" class="comment-card">
+        <div class="comment-header">
+          <div class="comment-user-info">
+            <span class="user-name">{{ comment.userName || 'Anonymous' }}</span>
+            <span class="comment-date">
+              {{ comment.date | date:'MMM d, y, h:mm a' }}
+            </span>
+          </div>
+           
+<button 
+  class="btn-delete-comment" 
+  (click)="deleteComment(comment.id)"
+  title="Delete comment">
+  <!-- Remove *ngIf for testing -->
+  <i class="fas fa-trash"></i> Delete
+</button>
+        </div>
+        <div class="comment-content">
+          {{ comment.comment }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

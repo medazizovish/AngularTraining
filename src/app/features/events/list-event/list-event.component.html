@@ -1,21 +1,88 @@
-<div class="container py-4">
-  
 
+<div class="cosmic-event-universe">
 
-   <div class="d-flex justify-content-between align-items-center mb-3">
-  <h2 class="mb-0">Liste des événements</h2>
-<button class="btn btn-primary" [routerLink]="['newEvent']">Add Event</button></div>
+</div><div class="cosmic-container">
+  <!-- Animated Background Elements -->
+  <div class="cosmic-bg">
+    <div class="starsec"></div>
+    <div class="starthird"></div>
+    <div class="starfourth"></div>
+    <div class="starfifth"></div>
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="pulsar"></div>
+  </div>
 
-  <!-- Recherche -->
-  <input type="text" [(ngModel)]="searchValue"  class="form-control mb-4" placeholder="Rechercher un événement">
+  <div class="container-fluid cosmic-content">
+    <!-- Header Section -->
+    <div class="cosmic-header">
+      <div class="d-flex justify-content-between align-items-center mb-5">
+        <div class="header-title">
+          <div class="title-glow"></div>
+          <h2 class="cosmic-title mb-0">
+            <span class="title-text">Event Universe</span>
+            <span class="title-sub">Discover Amazing Experiences</span>
+          </h2>
+        </div>
+        <button class="btn-cosmic-primary" [routerLink]="['newEvent']">
+          <span class="btn-glow"></span>
+          <i class="fas fa-plus me-2"></i>
+          Create Event
+        </button>
+      </div>
 
-  <div class="row g-3" >
+      <!-- Search Section -->
+      <div class="search-section">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" 
+                 [(ngModel)]="searchValue" 
+                 class="cosmic-search" 
+                 placeholder="Search across the cosmos...">
+          <div class="search-particles"></div>
+        </div>
+        <div class="search-stats">
+          <span class="stat-badge">{{ listEvents.length }} events in orbit</span>
+        </div>
+      </div>
+    </div>
 
-    <app-card-event class="col-md-4"
+    <!-- Events Grid -->
+    <div class="cosmic-grid">
+      <div class="grid-background">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+      </div>
+      
+      <div class="row g-4 cosmic-events">
+     <app-card-event class="col-xl-4 col-lg-6"
                     *ngFor="let event of listEvents"
-                    [e]="event" (notificationLike)="nbrLike(event)" >
-
+                    [e]="event" 
+                    (notificationLike)="nbrLike(event)"
+                    (notificationDelete)="deleteEvent(event)">
     </app-card-event>
+      </div>
 
+      <!-- Empty State -->
+      <div *ngIf="listEvents.length === 0" class="empty-state">
+        <div class="empty-orbit">
+          <i class="fas fa-meteor empty-icon"></i>
+          <h4>No Events Found</h4>
+          <p>Be the first to launch an event into orbit!</p>
+          <button class="btn-cosmic-outline" [routerLink]="['newEvent']">
+            Create First Event
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="floating-particles">
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+      <div class="particle particle-4"></div>
+    </div>
   </div>
 </div>
