@@ -11,6 +11,7 @@ import {ListEventComponent} from './features/events/list-event/list-event.compon
 import {FormsModule} from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FeedbakComponent } from './features/feedbak/feedbak.component';
+import { CardeeeventComponent } from "./layout/cardeeevent/cardeeevent.component";
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { FeedbakComponent } from './features/feedbak/feedbak.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,  
-    HttpClientModule
-  ],
+    FormsModule,
+    HttpClientModule,
+    CardeeeventComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })

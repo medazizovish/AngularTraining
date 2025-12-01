@@ -7,9 +7,10 @@ import {ListEventComponent} from './list-event/list-event.component';
 import { DetailEventComponent } from './detail-event/detail-event.component';
 import {FormsModule} from "@angular/forms";
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { CardEventComponent } from './card-event/card-event.component';
 import {SharedModule} from '../../shared/shared.module';
 import { FormeventsComponent } from './formevents/formevents.component';
+import { CardeeeventComponent } from "../../layout/cardeeevent/cardeeevent.component";
+
 
 
 @NgModule({
@@ -18,15 +19,15 @@ import { FormeventsComponent } from './formevents/formevents.component';
     ListEventComponent,
     DetailEventComponent,
     SideBarComponent,
-    CardEventComponent,
     FormeventsComponent,
   ],
   imports: [
     CommonModule,
     EventsRoutingModule,
     FormsModule,
-    SharedModule
-  ]
+    SharedModule,
+    CardeeeventComponent
+]
 
 })
 export class EventsModule { }

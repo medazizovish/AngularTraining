@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <title>EventHub - Accueil</title>
-
 </head>
 <body class="dark-theme">
 
@@ -23,7 +21,7 @@
       </p>
       <div class="mt-4">
         <a href="/events" class="btn btn-primary btn-lg">Découvrir les événements</a>
-        <a  routerLink="/users/user" class="btn btn-outline-secondary btn-lg ms-2">Créer un compte</a>
+        <a routerLink="/users/user" class="btn btn-outline-secondary btn-lg ms-2">Créer un compte</a>
       </div>
     </div>
   </section>
@@ -66,5 +64,30 @@
     </div>
   </section>
 
+
+
+  
+
+  <section class="container py-5">
+    <h2 class="text-white mb-4">  Événements les plus populaires</h2>
+    <p class="text-muted mb-4">Découvrez les événements qui ont le plus de succès sur EventHub</p>
+    
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let event of topLikedEvents; let i = index">
+        <div class="top-event-card">
+          <div class="position-badge" [ngClass]="{
+            'position-1': i === 0,
+            'position-2': i === 1,
+            'position-3': i === 2
+          }">
+            #{{ i + 1 }}
+          </div>
+          <app-cardeeevent [e]="event"></app-cardeeevent>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
 </body>
 </html>

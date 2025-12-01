@@ -1,14 +1,25 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Eventy } from '../../../models/eventy';
+import { Eventy } from '../../models/eventy';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
-  selector: 'app-card-event',
-  templateUrl: './card-event.component.html',
-  styleUrls: ['./card-event.component.css']
+  selector: 'app-cardeeevent',
+  standalone: true,
+  imports: [
+  RouterModule,
+  CommonModule,
+  SharedModule
+  ],
+  templateUrl: './cardeeevent.component.html',
+  styleUrl: './cardeeevent.component.css'
 })
-export class CardEventComponent {
+export class CardeeeventComponent {
+@Input() e: Eventy;
+
+
   searchValue: string;
-  @Input() e: Eventy;
   @Output() notificationLike: EventEmitter<Eventy> = new EventEmitter();
   @Output() notificationDelete: EventEmitter<Eventy> = new EventEmitter();
   @Output() notificationBuy: EventEmitter<Eventy> = new EventEmitter();
@@ -29,4 +40,5 @@ export class CardEventComponent {
   deleteEvent(e: Eventy) {
     this.notificationDelete.emit(e);
   }
+
 }
